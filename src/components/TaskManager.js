@@ -8,7 +8,7 @@ export default function TaskManager() {
     const [tasks, setTasks] = useState([])
 
     /**
-     * Ajoute une nouvelle tâche
+     * Création d'une nouvelle tâche
      *
      * @param status
      */
@@ -49,6 +49,11 @@ export default function TaskManager() {
         saveTasksToLocalStorage(newTaskList)
     }
 
+    /**
+     * Efface la tache dont l'id correspond
+     *
+     * @param taskId
+     */
     function deleteTask(taskId) {
         let filteredTasks = tasks.filter(task => {
             return task.id !== taskId
@@ -58,6 +63,7 @@ export default function TaskManager() {
 
         saveTasksToLocalStorage(filteredTasks)
     }
+
 
     function moveTask(id, newStatus) {
         let task = tasks.filter(task => {

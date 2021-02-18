@@ -1,5 +1,7 @@
+import React from "react"
 import { useState } from "react"
 import "../styles/task.scss"
+import Timer from "react-compound-timer";
 
 export default function Task(props) {
     const { addTask, deleteTask, moveTask, task } = props
@@ -32,6 +34,9 @@ export default function Task(props) {
         }
     }
 
+    /**
+     * Change le statut de la Task vers le statut précédent
+     */
     function handleMoveLeft() {
         let newStatus = ""
 
@@ -46,6 +51,9 @@ export default function Task(props) {
         }
     }
 
+    /**
+     * Change le statut de la Task vers le statut suivant
+     */
     function handleMoveRight() {
         let newStatus = ""
 

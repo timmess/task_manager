@@ -2,6 +2,7 @@ import React, {useState} from "react"
 import {Card, Button, Alert} from "react-bootstrap";
 import {useAuth} from "../contexts/AuthContext";
 import {Link, useHistory} from "react-router-dom";
+import Timer from "react-compound-timer";
 
 export default function Dashboard() {
     const [error, setError] = useState("")
@@ -31,7 +32,7 @@ export default function Dashboard() {
                     {error && <Alert variant={"danger"}>{error}</Alert>}
                     <strong>Email : </strong> {currentUser.email}
                     <Link to="/update-profile" className="btn btn-primary w-100 mt-3">Mettre à jour son profil</Link>
-                    <Link to="/task-manager" className="btn btn-primary w-100 mt-3">Gérer ses tâches</Link>
+                    <Link to="/task-manager" className="btn btn-success w-100 mt-3">Gérer ses tâches</Link>
                 </Card.Body>
             </Card>
 
