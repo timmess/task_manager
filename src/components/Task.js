@@ -9,6 +9,11 @@ export default function Task(props) {
     const [collapsed, setCollapsed] = useState(task.isCollapsed)
     const [formAction, setFormAction] = useState("")
 
+    /**
+     * Traitement du formulaire d'ajout et de suppresion d'une tâche
+     *
+     * @param event
+     */
     function handleSubmit(event) {
         event.preventDefault()
 
@@ -89,6 +94,11 @@ export default function Task(props) {
                     placeholder="Description"
                     defaultValue={task.description}
                 />
+                {task.status === "En cours" &&
+                    <Timer>
+                            <Timer.Hours /> heures <Timer.Minutes /> minutes <Timer.Seconds /> seconds
+                    </Timer>
+                }
                 <button
                     onClick={() => {
                         setFormAction("save")

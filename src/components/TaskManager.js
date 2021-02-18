@@ -64,7 +64,11 @@ export default function TaskManager() {
         saveTasksToLocalStorage(filteredTasks)
     }
 
-
+    /**
+     *
+     * @param id
+     * @param newStatus
+     */
     function moveTask(id, newStatus) {
         let task = tasks.filter(task => {
             return task.id === id
@@ -132,7 +136,9 @@ export default function TaskManager() {
                     />
                 </section>
             </main>
-            <Link to="/" className="btn btn-primary w-100 mt-3">Retourner sur son profil</Link>
+            <div className="text-center">
+                <Link to="/" className="btn btn-primary w-25 mt-3">Retourner sur son profil</Link>
+            </div>
         </div>
     )
 }
