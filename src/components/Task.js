@@ -4,13 +4,8 @@ import "../styles/task.scss"
 export default function Task(props) {
     const { addTask, deleteTask, moveTask, task } = props
 
-    const [urgencyLevel, setUrgencyLevel] = useState(task.urgency)
     const [collapsed, setCollapsed] = useState(task.isCollapsed)
     const [formAction, setFormAction] = useState("")
-
-    function setUrgency(event) {
-        setUrgencyLevel(event.target.attributes.urgency.value)
-    }
 
     function handleSubmit(event) {
         event.preventDefault()
@@ -23,7 +18,6 @@ export default function Task(props) {
                     id: task.id,
                     title: event.target.elements.title.value,
                     description: event.target.elements.description.value,
-                    urgency: urgencyLevel,
                     status: task.status,
                     isCollapsed: true,
                 }
@@ -87,44 +81,11 @@ export default function Task(props) {
                     placeholder="Description"
                     defaultValue={task.description}
                 />
-                <div className="urgencyLabels">
-                    <label className={`low ${urgencyLevel === "low" ? "selected" : ""}`}>
-                        <input
-                            urgency="low"
-                            onChange={setUrgency}
-                            type="radio"
-                            name="urgency"
-                        />
-                        low
-                    </label>
-                    <label
-                        className={`medium ${urgencyLevel === "medium" ? "selected" : ""}`}
-                    >
-                        <input
-                            urgency="medium"
-                            onChange={setUrgency}
-                            type="radio"
-                            name="urgency"
-                        />
-                        medium
-                    </label>
-                    <label
-                        className={`high ${urgencyLevel === "high" ? "selected" : ""}`}
-                    >
-                        <input
-                            urgency="high"
-                            onChange={setUrgency}
-                            type="radio"
-                            name="urgency"
-                        />
-                        high
-                    </label>
-                </div>
                 <button
                     onClick={() => {
                         setFormAction("save")
                     }}
-                    className="button"
+                    className="btn btn-success"
                 >
                     {collapsed ? "Edit" : "Save"}
                 </button>
@@ -133,7 +94,7 @@ export default function Task(props) {
                         onClick={() => {
                             setFormAction("delete")
                         }}
-                        className="button delete"
+                        className="btn btn-danger"
                     >
                         X
                     </button>

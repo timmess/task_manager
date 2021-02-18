@@ -6,6 +6,7 @@ export default function StatusLine(props) {
 
     let taskList, tasksForStatus
 
+
     function handleAddEmpty() {
         addEmptyTask(status)
     }

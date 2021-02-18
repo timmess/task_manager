@@ -7,6 +7,11 @@ import {Link} from "react-router-dom";
 export default function TaskManager() {
     const [tasks, setTasks] = useState([])
 
+    /**
+     * Ajoute une nouvelle tâche
+     *
+     * @param status
+     */
     function addEmptyTask(status) {
         const lastTask = tasks[tasks.length - 1]
 
@@ -22,12 +27,16 @@ export default function TaskManager() {
                 id: newTaskId,
                 title: "",
                 description: "",
-                urgency: "",
                 status: status,
             },
         ])
     }
 
+    /**
+     * Sauvegarde la nouvelle tâche
+     *
+     * @param taskToAdd
+     */
     function addTask(taskToAdd) {
         let filteredTasks = tasks.filter(task => {
             return task.id !== taskToAdd.id
