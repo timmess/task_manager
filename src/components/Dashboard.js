@@ -23,7 +23,7 @@ export default function Dashboard() {
         <>
             <Card>
                 <Card.Body>
-                    {JSON.stringify(currentUser)}
+                    {/*{JSON.stringify(currentUser)}*/}
                     <h2 className="text-center mb-4">Profil</h2>
                     <div>
                         {currentUser.photoURL}
