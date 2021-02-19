@@ -78,6 +78,8 @@ export default function Task(props) {
 
     return (
         <div className={`task ${collapsed ? "collapsedTask" : ""}`}>
+
+            <input type="hidden" value={time} />
             <button onClick={handleMoveLeft} className="button moveTask">
                 &#171;
             </button>
@@ -115,12 +117,17 @@ export default function Task(props) {
                         <Timer
                             initialTime={task.time * 60000}
                             direction="backward"
-                            startImmediately={task.status === "En cours" ? true : false}
+                            startImmediately={task.status === "En cours"}
                         >
                             {({ start, pause, reset }) => (
                                 <React.Fragment>
                                     <div>
                                         <Timer.Minutes /> minutes <Timer.Seconds /> secondes
+                                    </div>
+                                    <div className="d-flex">
+                                        <button className="btn btn-light" onClick={start}>Start</button>
+                                        <button className="btn btn-light" onClick={pause}>Pause</button>
+                                        <button className="btn btn-light" onClick={reset}>Reset</button>
                                     </div>
                                 </React.Fragment>
                             )}
