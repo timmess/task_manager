@@ -6,7 +6,7 @@ import Timer from "react-compound-timer";
 export default function Task(props) {
     const { addTask, deleteTask, moveTask, task } = props
 
-    const [time, setTime] = useState(0)
+    const [time, setTime] = useState()
     const [collapsed, setCollapsed] = useState(task.isCollapsed)
     const [formAction, setFormAction] = useState("")
 
@@ -102,7 +102,7 @@ export default function Task(props) {
                 {!collapsed ?
                     <div className="input-group mb-3">
                         <input
-                            type="number"
+                            type="float"
                             className="form-control"
                             name="time"
                             defaultValue={task.time}
@@ -118,13 +118,20 @@ export default function Task(props) {
                             initialTime={task.time * 60000}
                             direction="backward"
                             startImmediately={task.status === "En cours"}
+                            checkpoints={[
+                                {
+                                    time: 0,
+                                    callback: () => alert('La tâche ' + task.title + ' est terminée'),
+                                }
+                            ]}
                         >
                             {({ start, pause, reset }) => (
                                 <React.Fragment>
                                     <div>
                                         <Timer.Minutes /> minutes <Timer.Seconds /> secondes
                                     </div>
-                                    <div className="d-flex">
+
+                                    <div className="btn-group-vertical btn-group-sm" role="group">
                                         <button className="btn btn-light" onClick={start}>Start</button>
                                         <button className="btn btn-light" onClick={pause}>Pause</button>
                                         <button className="btn btn-light" onClick={reset}>Reset</button>
@@ -134,24 +141,26 @@ export default function Task(props) {
                         </Timer>
                     </>
                 }
-                <button
-                    onClick={() => {
-                        setFormAction("save")
-                    }}
-                    className="btn btn-success"
-                >
-                    {collapsed ? "Edit" : "Save"}
-                </button>
-                {collapsed && (
+                <div className="btn-group-vertical btn-group-sm" role="group">
                     <button
                         onClick={() => {
-                            setFormAction("delete")
+                            setFormAction("save")
                         }}
-                        className="btn btn-danger"
+                        className="btn btn-success btn-sm"
                     >
-                        X
+                        {collapsed ? "Edit" : "Save"}
                     </button>
-                )}
+                    {collapsed && (
+                        <button
+                            onClick={() => {
+                                setFormAction("delete")
+                            }}
+                            className="btn btn-danger btn-sm"
+                        >
+                            X
+                        </button>
+                    )}
+                </div>
             </form>
             <button onClick={handleMoveRight} className="button moveTask">
                 &#187;

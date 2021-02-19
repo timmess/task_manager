@@ -25,7 +25,7 @@ export default function TaskManager() {
             ...tasks,
             {
                 id: newTaskId,
-                time: 0,
+                time: "",
                 title: "",
                 description: "",
                 status: status,
