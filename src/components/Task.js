@@ -96,7 +96,7 @@ export default function Task(props) {
                 />
                 {task.status === "En cours" &&
                     <Timer>
-                            <Timer.Hours /> heures <Timer.Minutes /> minutes <Timer.Seconds /> seconds
+                            <Timer.Hours /> heures <Timer.Minutes /> minutes <Timer.Seconds /> secondes
                     </Timer>
                 }
                 <button
