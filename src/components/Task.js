@@ -1,11 +1,11 @@
 import React from "react"
 import { useState } from "react"
 import "../styles/task.scss"
-import Timer from "react-compound-timer";
 
 export default function Task(props) {
     const { addTask, deleteTask, moveTask, task } = props
 
+    const [time, setTime] = useState(0)
     const [collapsed, setCollapsed] = useState(task.isCollapsed)
     const [formAction, setFormAction] = useState("")
 
@@ -24,6 +24,7 @@ export default function Task(props) {
                 let newTask = {
                     id: task.id,
                     title: event.target.elements.title.value,
+                    time: task.time,
                     description: event.target.elements.description.value,
                     status: task.status,
                     isCollapsed: true,
@@ -60,6 +61,7 @@ export default function Task(props) {
      * Change le statut de la Task vers le statut suivant
      */
     function handleMoveRight() {
+
         let newStatus = ""
 
         if (task.status === "A faire") {
@@ -94,10 +96,21 @@ export default function Task(props) {
                     placeholder="Description"
                     defaultValue={task.description}
                 />
-                {task.status === "En cours" &&
-                    <Timer>
-                            <Timer.Hours /> heures <Timer.Minutes /> minutes <Timer.Seconds /> secondes
-                    </Timer>
+                {!collapsed ?
+                    <div className="input-group mb-3">
+                        <input
+                            type="integer"
+                            className="form-control"
+                            name="time"
+                            placeholder="Durée en minutes"
+                            defaultValue={time}
+                            onChange={(e) => {
+                                setTime(e.target.value)
+                            }}
+                        />
+                    </div>
+                :
+                    <div>Durée : {time} minutes</div>
                 }
                 <button
                     onClick={() => {

@@ -62,7 +62,7 @@ import {Link, useHistory} from "react-router-dom";
                         </Form.Group>
                         <Button className="w-100" type="submit" disabled={loading}>Mettre à jour</Button>
                     </Form>
-
+                    <button className="btn btn-danger w-100 mt-2">Supprimer son compte</button>
                 </Card.Body>
             </Card>
             <div className="w-100 text-center mt-2">

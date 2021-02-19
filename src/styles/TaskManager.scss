@@ -90,10 +90,3 @@ section {
     }
   }
 }
-
-@media only screen and (max-width: 75rem) {
-  section {
-    width: 100%;
-    flex-direction: column;
-  }
-}
