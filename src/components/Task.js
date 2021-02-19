@@ -103,6 +103,7 @@ export default function Task(props) {
                             type="number"
                             className="form-control"
                             name="time"
+                            defaultValue={task.time}
                             placeholder="Durée en minutes"
                             onChange={(e) => {
                                 setTime(e.target.value)
@@ -112,13 +113,14 @@ export default function Task(props) {
                 :
                     <>
                         <Timer
-                            initialTime={task.time * 100000}
+                            initialTime={task.time * 60000}
                             direction="backward"
+                            startImmediately={task.status === "En cours" ? true : false}
                         >
                             {({ start, pause, reset }) => (
                                 <React.Fragment>
                                     <div>
-                                        <Timer.Hours /> heures <Timer.Minutes /> minutes <Timer.Seconds /> secondes
+                                        <Timer.Minutes /> minutes <Timer.Seconds /> secondes
                                     </div>
                                 </React.Fragment>
                             )}
