@@ -3,6 +3,7 @@ import React from "react"
 import { useState, useEffect } from "react"
 import StatusLine from "./StatusLine"
 import {Link} from "react-router-dom";
+import {Container} from "react-bootstrap";
 
 export default function TaskManager() {
     const [tasks, setTasks] = useState([])
@@ -107,39 +108,41 @@ export default function TaskManager() {
     }, [])
 
     return (
-        <div>
-            <h1>Gestionnaire de tâche</h1>
-            <main>
-                <section>
-                    <StatusLine
-                        tasks={tasks}
-                        addEmptyTask={addEmptyTask}
-                        addTask={addTask}
-                        deleteTask={deleteTask}
-                        moveTask={moveTask}
-                        status="A faire"
-                    />
-                    <StatusLine
-                        tasks={tasks}
-                        addEmptyTask={addEmptyTask}
-                        addTask={addTask}
-                        deleteTask={deleteTask}
-                        moveTask={moveTask}
-                        status="En cours"
-                    />
-                    <StatusLine
-                        tasks={tasks}
-                        addEmptyTask={addEmptyTask}
-                        addTask={addTask}
-                        deleteTask={deleteTask}
-                        moveTask={moveTask}
-                        status="Terminé"
-                    />
-                </section>
-            </main>
-            <div className="text-center">
-                <Link to="/" className="btn btn-primary w-25 mt-3">Retourner sur son profil</Link>
+        <Container>
+            <div>
+                <h1>Gestionnaire de tâche</h1>
+                <main>
+                    <section>
+                        <StatusLine
+                            tasks={tasks}
+                            addEmptyTask={addEmptyTask}
+                            addTask={addTask}
+                            deleteTask={deleteTask}
+                            moveTask={moveTask}
+                            status="A faire"
+                        />
+                        <StatusLine
+                            tasks={tasks}
+                            addEmptyTask={addEmptyTask}
+                            addTask={addTask}
+                            deleteTask={deleteTask}
+                            moveTask={moveTask}
+                            status="En cours"
+                        />
+                        <StatusLine
+                            tasks={tasks}
+                            addEmptyTask={addEmptyTask}
+                            addTask={addTask}
+                            deleteTask={deleteTask}
+                            moveTask={moveTask}
+                            status="Terminé"
+                        />
+                    </section>
+                </main>
+                <div className="text-center">
+                    <Link to="/" className="btn btn-primary w-25 mt-3">Retourner sur son profil</Link>
+                </div>
             </div>
-        </div>
+        </Container>
     )
 }
