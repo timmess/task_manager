@@ -1,6 +1,7 @@
 import React from "react"
 import { useState } from "react"
 import "../styles/task.scss"
+import Timer from "react-compound-timer";
 
 export default function Task(props) {
     const { addTask, deleteTask, moveTask, task } = props
@@ -20,11 +21,11 @@ export default function Task(props) {
         if (formAction === "save") {
             if (collapsed) {
                 setCollapsed(false)
-            } else {
+            }else {
                 let newTask = {
                     id: task.id,
                     title: event.target.elements.title.value,
-                    time: task.time,
+                    time: event.target.elements.time.value,
                     description: event.target.elements.description.value,
                     status: task.status,
                     isCollapsed: true,
@@ -99,18 +100,30 @@ export default function Task(props) {
                 {!collapsed ?
                     <div className="input-group mb-3">
                         <input
-                            type="integer"
+                            type="number"
                             className="form-control"
                             name="time"
                             placeholder="Durée en minutes"
-                            defaultValue={time}
                             onChange={(e) => {
                                 setTime(e.target.value)
                             }}
                         />
                     </div>
                 :
-                    <div>Durée : {time} minutes</div>
+                    <>
+                        <Timer
+                            initialTime={task.time * 100000}
+                            direction="backward"
+                        >
+                            {({ start, pause, reset }) => (
+                                <React.Fragment>
+                                    <div>
+                                        <Timer.Hours /> heures <Timer.Minutes /> minutes <Timer.Seconds /> secondes
+                                    </div>
+                                </React.Fragment>
+                            )}
+                        </Timer>
+                    </>
                 }
                 <button
                     onClick={() => {
